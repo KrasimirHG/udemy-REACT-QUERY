@@ -9,7 +9,7 @@ const fetchUrl = async (url) => {
 };
 
 export function InfinitePeople() {
-  // TODO: get data for InfiniteScroll via React Query
+
   const { data, fetchNextPage, hasNextPage, isLoading, isFetching, isError, error } = useInfiniteQuery(
     'sw-people',
     ({ pageParam = initialUrl }) => fetchUrl(pageParam),
