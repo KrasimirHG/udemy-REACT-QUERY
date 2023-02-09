@@ -11,7 +11,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["@typescript-eslint", "simple-import-sort", "prettier"],
+  "plugins": ["@typescript-eslint", "simple-import-sort", "prettier", "@tanstack/query"],
   "env": {
     "es6": true
   },
@@ -31,6 +31,8 @@
       {
         "endOfLine": "auto"
       }
-    ]
+    ],
+    "@tanstack/query/exhaustive-deps": "warn",
+    "@tanstack/query/prefer-query-object-syntax": "warn"
   }
 }
