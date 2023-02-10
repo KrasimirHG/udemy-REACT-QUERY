@@ -17,5 +17,31 @@ export function InfiniteSpecies() {
       getNextPageParam: (lastPage) => lastPage.next || undefined
     }
   );
-      return <InfiniteScroll />;
+
+  if (isLoading) return <div className='loading'>Loading ..</div>
+
+  if (isError) return <div>Error {error.toString()}</div>
+
+  return (
+    <>
+      {isFetching && <div className='loading'>Loading ..</div>}
+      <InfiniteScroll loadMore={fetchNextPage} hasMore={hasNextPage}>
+        {
+          // console.log(data)
+          data.pages.map(pageData => {
+            return pageData.results.map(specie => {
+              return (
+                <Species
+                  key={specie.name}
+                  name={specie.name}
+                  language={specie.language}
+                  averageLifespan={specie.average_lifespan}
+                />
+              )
+            })
+          })
+        }
+      </InfiniteScroll>
+    </>
+  )
 };
