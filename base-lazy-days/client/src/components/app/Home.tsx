@@ -3,7 +3,7 @@ import { ReactElement } from 'react';
 import { GiFlowerPot } from 'react-icons/gi';
 
 import { BackgroundImage } from '../common/BackgroundImage';
-import { usePrefetchTreatments } from 'components/treatments/hooks/useTreatments';
+import { usePrefetchTreatments } from '../treatments/hooks/useTreatments';
 
 export function Home(): ReactElement {
   usePrefetchTreatments();

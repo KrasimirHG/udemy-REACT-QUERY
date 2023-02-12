@@ -1,6 +1,6 @@
 // @ts-nocheck
 import dayjs from 'dayjs';
-import { Dispatch, SetStateAction, useState, useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 
 import { axiosInstance } from '../../../axiosInstance';
@@ -69,9 +69,9 @@ export function useAppointments(): UseAppointments {
     const nextMonthYear = getNewMonthYear(monthYear, 1);
     queryClient.prefetchQuery(
       [queryKeys.appointments, nextMonthYear.year, nextMonthYear.month],
-      () => getAppointments(nextMonthYear.year, nextMonthYear.month)
-      )
-  }, [queryClient, monthYear])
+      () => getAppointments(nextMonthYear.year, nextMonthYear.month),
+    );
+  }, [queryClient, monthYear]);
 
   // TODO: update with useQuery!
   // Notes:
@@ -82,9 +82,10 @@ export function useAppointments(): UseAppointments {
   //       monthYear.month
   const fallback = {};
 
-  const { data: appointments = fallback } = useQuery([queryKeys.appointments, monthYear.year, monthYear.month],
-    () => getAppointments(monthYear.year, monthYear.month)
-    );
+  const { data: appointments = fallback } = useQuery(
+    [queryKeys.appointments, monthYear.year, monthYear.month],
+    () => getAppointments(monthYear.year, monthYear.month),
+  );
 
   /** ****************** END 3: useQuery  ******************************* */
 
