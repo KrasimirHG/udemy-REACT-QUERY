@@ -1,4 +1,6 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+// prettier-ignore
+// import { filter } from '@chakra-ui/system';
+import { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import type { Staff } from '../../../../../shared/types';
@@ -22,7 +24,13 @@ export function useStaff(): UseStaff {
   // for filtering staff by treatment
   const [filter, setFilter] = useState('all');
 
-  const { data: staff = [] } = useQuery(queryKeys.staff, getStaff);
+  const selectFn = useCallback((staff) => filterByTreatment(staff, filter), [filter]);
+
+  const { data: staff = [] } = useQuery(queryKeys.staff, getStaff,
+    {
+      select: filter === 'all' ? undefined : selectFn
+    }
+  );
 
   return { staff, filter, setFilter };
 }
