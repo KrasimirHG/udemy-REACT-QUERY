@@ -24,13 +24,14 @@ export function useStaff(): UseStaff {
   // for filtering staff by treatment
   const [filter, setFilter] = useState('all');
 
-  const selectFn = useCallback((staff) => filterByTreatment(staff, filter), [filter]);
-
-  const { data: staff = [] } = useQuery(queryKeys.staff, getStaff,
-    {
-      select: filter === 'all' ? undefined : selectFn
-    }
+  const selectFn = useCallback(
+    (staff) => filterByTreatment(staff, filter),
+    [filter]
   );
+
+  const { data: staff = [] } = useQuery(queryKeys.staff, getStaff, {
+    select: filter === 'all' ? undefined : selectFn
+  });
 
   return { staff, filter, setFilter };
 }
