@@ -10,7 +10,7 @@ import { appointmentInPast, getAppointmentColor } from './utils';
 // determine whether this appointment can be reserved / un-reserved by logged-in user
 function isClickable(
   user: User | null,
-  appointmentData: AppointmentType,
+  appointmentData: AppointmentType
 ): boolean {
   return !!(
     user?.id &&
@@ -24,7 +24,7 @@ interface AppointmentProps {
 }
 
 export function Appointment({
-  appointmentData,
+  appointmentData
 }: AppointmentProps): ReactElement {
   const { user } = useUser();
   const reserveAppointment = useReserveAppointment();
@@ -42,7 +42,7 @@ export function Appointment({
     hoverCss = {
       transform: 'translateY(-1px)',
       boxShadow: 'md',
-      cursor: 'pointer',
+      cursor: 'pointer'
     };
   }
 

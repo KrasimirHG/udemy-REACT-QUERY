@@ -14,7 +14,7 @@ DateBox.defaultProps = { gridColumn: null, appointments: [] };
 export function DateBox({
   date,
   gridColumn,
-  appointments = [],
+  appointments = []
 }: DateBoxProps): ReactElement {
   return (
     <Box
